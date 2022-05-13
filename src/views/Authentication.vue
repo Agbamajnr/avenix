@@ -1,20 +1,19 @@
 <template>
-    <div class="main flex flex-col justify-start w-full py-12 min-h-screen min-w-screen" ref="main">
-        <div class="header bg-red-800 w-full flex flex-row gap-x-5">
-            <img src="/images/logo.png" alt="">
-            <p>Avenix</p>
+    <div class="main flex flex-col  items-center w-full py-10" ref="main">
+        <div class="header w-4/5">
+            <img src="../assets/img/logo.svg" alt="">
         </div>
-        <div class="components w-full h-full min-w-screen flex justify-center">
-            <component :is="component"></component>
+        <div class="components w-full h-full min-w-screen min-h-screen flex justify-center items-center">
+            <component @toUsernameComp="component = 'second-step'" :is="component"></component>
         </div>
     </div>
 </template>
 
 <script>
 //Import components
-import FirstStep from '@/components/forms/FirstStep.vue'
-import SecondStep from '@/components/forms/SecondStep.vue'
-import LastStep from '@/components/forms/ThirdStep.vue'
+import FirstStep from '@/components/forms/FormOne.vue'
+import SecondStep from '@/components/forms/FormTwo.vue'
+import LastStep from '@/components/forms/Password.vue'
 
 //Import tools
 import {ref, reactive, onBeforeMount, provide, computed} from 'vue'
@@ -36,12 +35,5 @@ export default {
 </script>
 
 <style scoped>
-    .main {
-        background: #090B13;
-        font-family: Neue Machina;
-    }
-    .form-comp {
-        width: 510px;
-        height: 500px;
-    }
+    
 </style>
