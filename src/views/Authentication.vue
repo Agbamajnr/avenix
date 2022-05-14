@@ -4,7 +4,7 @@
             <img src="../assets/img/logo.svg" alt="">
         </div>
         <div class="components w-full h-full min-w-screen min-h-screen flex justify-center items-center">
-            <component @toUsernameComp="component = 'second-step'" :is="component"></component>
+            <component @toUsernameComp="component = 'second-step'" @toPasscode="component = 'last-step'" :is="component"></component>
         </div>
     </div>
 </template>

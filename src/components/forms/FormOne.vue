@@ -7,7 +7,7 @@
             </div>
             <div class="form w-full col-flex gap-y-3">
                 <input type="email" name="Email" v-model="data.email" class="pl-4 w-full"  placeholder="Email Address">
-                <p class="p-txt form-subtitle">By entering your personal email address, you agree to our <a href="#" class="underline">Terms & Conditions</a></p>
+                <p class="p-txt form-subtitle">By entering your personal email address, you agree to our <a href="#" class="underline terms-p">Terms & Conditions</a></p>
             </div>
             <button @click="$emit('toUsernameComp')"  :class="{'btn-yellow grid-center w-full': data.email.length > 0, 'next-btn grid-center w-full': data.email.length < 1}">
                 <p class="text-white font-medium" v-if="data.email.length < 1">Continue</p>
@@ -94,6 +94,9 @@ input::placeholder {
 
 
     color: #6E6E6E;
+}
+.terms-p:hover {
+    color: #FFD107;
 }
 
 /* Design continue btn */

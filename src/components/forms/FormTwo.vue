@@ -7,11 +7,12 @@
             </div>
             <div class="form w-full col-flex gap-y-3">
                 <input type="text" name="Username" v-model="data.username" class="pl-4 w-full"  placeholder="Username">
-                <p class="p-txt form-subtitle">By entering your ussername, you agree to our <a href="#" class="underline">Terms & Conditions</a></p>
+                <p class="p-txt form-subtitle">By entering your ussername, you agree to our <a href="#" class="underline terms-p">Terms & Conditions</a></p>
             </div>
-            <button  :class="{'btn-yellow grid-center w-full': data.username.length > 0, 'next-btn grid-center w-full': data.username.length < 1}">
+            <button  :class="{'btn-yellow grid-center w-full': data.username.length > 0, 'next-btn grid-center w-full': data.username.length < 1}" @click="$emit('toPasscode')">
                 <p class="text-white font-medium" v-if="data.username.length < 1">Continue</p>
-                <p class="text-white font-medium" v-if="data.username.length > 0" style="color: #1C1C1C">Continue</p>
+                <p class="text-white font-medium" v-if="data.username.length > 0 && data.username.length < 4" style="color: #1C1C1C"> Continue</p>
+                <Spinner v-if="data.username.length > 3" class="w-10 h-6" />
             </button>
         </div>
     </div>
@@ -19,9 +20,13 @@
 
 <script>
 import {ref, reactive} from 'vue'
+import Spinner from '../reusables/Spinner.vue'
 
 export default {
     name:'FormTwo',
+    components: {
+        Spinner
+    },
     setup() {
         // Define data for model
         const data = reactive({
@@ -98,6 +103,10 @@ input::placeholder {
 
 
     color: #6E6E6E;
+}
+
+.terms-p:hover {
+    color: #FFD107;
 }
 
 /* Design continue btn */
