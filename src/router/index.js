@@ -1,16 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Authentication from '../views/Authentication.vue'
-
+import Home from '../views/Home.vue'
 
 const routes = [
-  {
-    path:'/',
-    redirect: '/auth',
-  },
   {
     path: '/auth',
     name: 'Auth',
     component: Authentication
+  },
+  {
+    path: '/',
+    name: 'Home',
+    component: Home
   }
 ]
 
