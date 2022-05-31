@@ -4,7 +4,7 @@
 
 <style>
 #app {
-  background-color: #121212 !important;
+  background-color: #000000 !important;
 }
 
 </style>

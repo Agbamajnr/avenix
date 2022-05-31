@@ -1,17 +1,18 @@
 <template>
-  <div class="text-white accd flex flex-col  w-full gap-y-4 px-10 py-4">
+  <div class="text-white accd flex flex-col  w-full gap-y-4 px-4 lg:px-10 py-4">
     <button
       @click="toggleAccordion()"
-      class="flex flex flex-row w-full items-center justify-between "
+      class="flex flex flex-row w-full items-center text-left justify-between "
       :aria-expanded="isOpen"
       :aria-controls="`collapse${_uid}`"
     >
-      <slot name="title"/>
+      <slot name="title" class="w-4/5"/>
       <svg
-        class="w-3 transition-all duration-200 transform"
+        class="w-4 transition-all duration-200 transform "
         :class="{
           'rotate-180': isOpen,
           'rotate-0': !isOpen,
+
         }"
         fill="none"
         stroke="currentColor"
@@ -30,7 +31,7 @@
 
 
     <hr v-if="isOpen" class="w-full text-gray-500">
-    <div v-show="isOpen" :id="`collapse${_uid}`">
+    <div v-show="isOpen" :id="`collapse${_uid}`" class="content">
       <slot name="content" />
     </div>
   </div>
@@ -57,7 +58,11 @@ export default {
         background: rgba(26, 25, 25, 0.85);
         border-radius: 5px;
         min-height: 62px;
+        transition: all .5s ease-in-out;
 
+    }
+    .content {
+      transition: all .5s ease-in-out;
     }
    hr {
        border-color: #3E3E3E;
