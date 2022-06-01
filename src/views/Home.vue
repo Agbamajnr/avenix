@@ -19,21 +19,21 @@
             </div>
 
             <div class="hero mt-28  flex flex-col gap-y-16">
-                <div class="flex-col flex items-center justify-center gap-y-4 text-white text-center w-full">
-                    <p class="text-3xl lg:text-5xl w-full font-black text-white lg:px-8 hero-head" style=" max-width: 1082px;">Buy, sell and manage <span style="color: #FFD107;">crypto</span> process in one app</p>
+                <div class="flex-col flex items-center justify-center gap-y-4 text-white text-center w-full" id="hero-top">
+                    <p class="text-3xl lg:text-5xl w-full font-black text-white lg:px-8 hero-head" id="heading" style=" max-width: 1082px;">Buy, sell and manage <span style="color: #FFD107;">crypto</span> process in one app</p>
                     <p class="w-full lg:w-3/5 lg:px-9 text-grey-300 text-xl" style="color: #F7F7F7">Manage your cryptocurrency portfolio on the simplest app</p>
                     <div class="waiting-form flex w-full flex-col mt-7 h-full gap-y-5 justify-center sm:flex-row gap-x-7">
                         <input type="email" placeholder="avenix@support.com" class="h-full px-3">
                         <button class="text-black w-full">Get early access</button>
                     </div>
                 </div>
-                <img class="lg:block hidden" src="../assets/img/home-hero-img.svg" alt="">
-                <img class="lg:hidden block" src="../assets/img/home-hero-img-sm.svg" alt="">
+                <img class="lg:block hidden hero-img" src="../assets/img/home-hero-img.svg"  alt="">
+                <img class="lg:hidden block hero-img" src="../assets/img/home-hero-img-sm.svg" alt="">
             </div>
         </div>
 
         <div class="main-info w-full h-full flex-col flex items-center">
-            <div class="wallet-catalogue flex lg:w-4/5 flex-col lg:gap-x-24 lg:flex-row w-full h-full mt-28 text-left p-5 items-center">
+            <div class="wallet-catalogue flex lg:w-4/5 flex-col lg:gap-x-24 lg:flex-row w-full h-full mt-28 text-left p-5 items-center" id="sell-crypto">
                 <img src="../assets/img/buy-btc-sm.svg" class="block lg:hidden mb-7 w-full" alt="">
                 <div class="details w-full lg:w-1/2 gap-0 col-flex gap-y-4 ">
                     <p class="hero-title">Buy, Sell and Borrow </p>
@@ -59,7 +59,7 @@
                 <img src="../assets/img/buy-btc.svg" class="w-1/2 hidden lg:block " alt="">
                 <!-- <img src="../assets/img/wallet-pic-intro-sm.svg" class="w-full block lg:hidden" alt=""> -->
             </div>
-            <div class="wallet-catalogue flex lg:w-4/5 flex-col lg:gap-x-24 lg:flex-row-reverse w-full h-full mt-28 text-left p-5 items-center">
+            <div class="wallet-catalogue flex lg:w-4/5 flex-col lg:gap-x-24 lg:flex-row-reverse w-full h-full mt-28 text-left p-5 items-center" id="borrow-crypto">
                 <img src="../assets/img/borrow-crypto-sm.svg" class="block lg:hidden mb-7 w-full" alt="">
                 <div class="details w-full lg:w-1/2 gap-0 col-flex gap-y-4 ">
                     <p class="hero-title">Borrow and Enjoy </p>
@@ -85,7 +85,7 @@
                 <img src="../assets/img/borrow-crypto.svg" class="w-1/2 hidden lg:block " alt="">
                 <!-- <img src="../assets/img/wallet-pic-intro-sm.svg" class="w-full block lg:hidden" alt=""> -->
             </div>
-            <div class="wallet-catalogue flex lg:w-4/5 flex-col lg:gap-x-24 lg:flex-row w-full h-full mt-28 text-left p-5 items-center">
+            <div class="wallet-catalogue flex lg:w-4/5 flex-col lg:gap-x-24 lg:flex-row w-full h-full mt-28 text-left p-5 items-center" id="send-crypto">
                 <img src="../assets/img/send-bitcoin-sm.svg" class="block lg:hidden mb-7 w-full" alt="">
                 <div class="details w-full lg:w-1/2 gap-0 col-flex gap-y-4 ">
                     <p class="hero-title">Send and Receive Funds </p>
@@ -164,12 +164,19 @@
 import {ref, reactive} from 'vue'
 import Faq from "../components/FAQ.vue";
 import MobileNav from '../components/MobileNav.vue'
+
+import gsap from "gsap";
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { onMounted } from "vue";
+
 export default {
     components: {
         Faq,
         MobileNav,
     },
     setup() {
+        gsap.registerPlugin(ScrollTrigger)
+
         const main = ref()
         const active_nav = ref(false)
 
@@ -186,6 +193,102 @@ export default {
                 main.value.style.overflow = "initial";
             }
         }
+
+        onMounted(() => {
+            gsap.fromTo(
+                "#hero-top",
+                {
+                    opacity: 0,
+                    y: -150,
+                },
+                {
+                    duration: 1.5,
+                    opacity: 1,
+                    y: 0,
+                }
+            );
+
+
+            gsap.fromTo( "#sell-crypto", 
+                {
+                    scrollTrigger: "#sell-crypto",
+                    duration: 1.5,
+                    opacity: 0,
+                    y: -150,
+                },
+                {
+                    scrollTrigger: "#sell-crypto",
+                    duration: 2,
+                    opacity: 1,
+                    y: 0,
+                },
+            )
+
+            gsap.fromTo( "#borrow-crypto", 
+                {
+                    scrollTrigger: "#borrow-crypto",
+                    duration: 2,
+                    opacity: 0,
+                    x: -150,
+                },
+                {
+                    scrollTrigger: "#borrow-crypto",
+                    duration: 1,
+                    opacity: 1,
+                    x: 0,
+                },
+            )
+
+            gsap.fromTo( "#send-crypto", 
+                {
+                    scrollTrigger: "#send-crypto",
+                    duration: 1.5,
+                    opacity: 0,
+                    y: 150,
+                },
+                {
+                    scrollTrigger: "#send-crypto",
+                    duration: 2,
+                    opacity: 1,
+                    y: 0,
+                },
+            )
+
+
+            gsap.fromTo( ".hero-img", 
+                {
+                    scrollTrigger: ".hero-img",
+                    duration: 1.5,
+                    opacity: 0,
+                    x: -150,
+                },
+                {
+                    scrollTrigger: ".hero-img",
+                    duration: 3.2,
+                    opacity: 1,
+                    x: 0,
+                },
+            )
+
+            gsap.fromTo( ".socials", 
+                {
+                    scrollTrigger: ".socials",
+                    duration: 1.5,
+                    opacity: 0,
+                    y: 150,
+                },
+                {
+                    scrollTrigger: ".socials",
+                    duration: 2.2,
+                    opacity: 1,
+                    y: 0,
+                },
+            )
+
+
+        })
+
+        
 
         const showProductModal = () => {
             productModal.value = !productModal.value;
